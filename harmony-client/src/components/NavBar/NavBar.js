@@ -1,46 +1,39 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './NavBar.scss'
 import { Link } from "react-router-dom";
-import {getUserInfo} from '../../utils/apiRequests';
 
 
-export default class NavBar extends Component {
-    state = {auth : false}
-
-    componentDidMount(){
-        this.attemptLogin();
-    }
-
-    attemptLogin = async () => {
-        const loginInfo = await getUserInfo();
-        console.log(loginInfo)
-        this.setState({auth:loginInfo.status, ...loginInfo.data})
-    }
-
-    createLoginLinks = () => {
-        return (
-        <div className='links'>
-                <Link to='/login'> Login </Link>
-                <Link to='/signup'> Signup </Link>
-        </div>)
-    }
-
-    createWelcomText = () => {
-        return (
-            <div className='welcome'>
-                <p> Welcome {this.state.username}! todo logout button</p>
-            </div>
-        )
-    }
-
-    render() {
-        const {auth} = this.state
-        
-        return (
-            <div className='nav-bar'>
-                {auth? this.createWelcomText():this.createLoginLinks()}
-            </div>
-        )
-    }
-
+const createLoginLinks = () => {
+    return (
+    <div className='links'>
+            <Link to='/login'> Login </Link>
+            <Link to='/signup'> Signup </Link>
+    </div>)
 }
+
+const createPageLinks = () => {
+    return (
+        <div className='links'>
+            <Link to='/goals'> Goals </Link>
+            <Link to='/habits'>  </Link>
+        </div>
+    )
+}
+
+const createWelcomText = (name) => {
+    return (
+        <div className='welcome'>
+            <p> Welcome {name}! todo logout button</p>
+        </div>
+    )
+}
+
+function NavBar ({auth,username}) {   
+    return (
+        <div className='nav-bar'>
+            {auth? createWelcomText(username):createLoginLinks()}
+        </div>
+    )
+}
+
+export default NavBar;

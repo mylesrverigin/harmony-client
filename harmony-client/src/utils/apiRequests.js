@@ -62,4 +62,14 @@ const signupUser = async (signupInfo) => {
     return data;
 }
 
-export {getUserInfo, loginUser, signupUser};
+const createGoal = async (goalData) => {
+    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','POST',goalData);
+    return returnData;
+}
+
+const getGoal = async () => {
+    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','GET');
+    return returnData;
+}
+
+export {getUserInfo, loginUser, signupUser,createGoal,getGoal};

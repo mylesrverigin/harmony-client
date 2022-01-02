@@ -23,13 +23,13 @@ const ProgressBar = (props) => {
         <div className='progress-bar'>
             <p className='heading'> {goal.name} </p>
 
-            <p className='bar-heading'> Progress</p>
+            <p className='bar-heading'> Progress {`${goal.currentProgress}/${goal.maxProgress}`}</p>
             <div className='bar-progress'>
                 <div className='progress' 
                     style={{width:getWidthPercentage(goal.currentProgress,goal.maxProgress)}}></div>
             </div>
 
-            <p className='bar-heading'> Time Elapsed</p>
+            <p className='bar-heading'> Time Elapsed {`start: ${new Date(goal.dateStarted).toLocaleDateString()}  end: ${new Date(goal.deadline).toLocaleDateString()}`}</p>
             <div className='bar-time'>
                 <div className='progress-time'
                     style={{width:normalizeDates(goal.dateStarted,goal.deadline)}}></div>

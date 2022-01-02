@@ -1,0 +1,17 @@
+@import '../../mixins/mixins.scss';
+
+.create-goal {
+
+    & .form {
+        display: flex;
+        flex-direction: column;
+        
+        & .goal-input {
+            @include input;
+        }
+
+        & .button {
+            @include button
+        }
+    }
+}

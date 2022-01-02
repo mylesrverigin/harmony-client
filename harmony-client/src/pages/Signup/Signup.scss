@@ -1,0 +1,18 @@
+@import '../../mixins/mixins.scss';
+
+.signup {
+    padding: 0 1rem;
+    
+    .form {
+        display: flex;
+        flex-direction: column;
+
+        .signup-input {
+            @include input;
+        }
+        .button {
+            @include button;
+            padding: 0.5rem 0;
+        }
+    }
+}

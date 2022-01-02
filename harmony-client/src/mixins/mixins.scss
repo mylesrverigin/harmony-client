@@ -1,0 +1,22 @@
+@mixin progress-bar {
+    height: 25px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+@mixin button {
+    padding: 0.5rem;
+    max-width: 150px;
+    border-radius: 2rem;
+    outline: none;
+    border: none;
+    background-color: aqua;
+    margin: 0.5rem 0;
+}
+
+@mixin input {
+    margin: 1rem 0 0 0;
+    max-width: 150px;
+}

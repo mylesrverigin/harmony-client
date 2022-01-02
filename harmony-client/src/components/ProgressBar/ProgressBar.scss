@@ -1,0 +1,41 @@
+@import '../../mixins/mixins.scss';
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    max-width: 500px;
+
+    & .heading {
+        font-size: 1.25rem;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    & .bar-heading {
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    & .bar-progress {
+        @include progress-bar;
+
+        .progress {
+            background-color: aqua;
+            height: 100%;
+        }
+    }
+
+    & .bar-time {
+        @include progress-bar;
+
+        & .progress-time {
+            background-color: rgb(3, 75, 75);
+            height: 100%;
+        }
+    }
+}

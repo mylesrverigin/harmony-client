@@ -46,35 +46,42 @@ const createRequest = (url,request,data) => {
     }
 }
 
+const baseAddress = 'http://localhost:8081';
+
 const getUserInfo = async () => {
-    return await sendRequestHandleResponse('http://localhost:8081/user/info','GET');
+    return await sendRequestHandleResponse(baseAddress+'/user/info','GET');
 }
 
 const loginUser = async (loginInfo) => {
-    const data = await sendRequestHandleResponse('http://localhost:8081/user/login','POST',loginInfo)
+    const data = await sendRequestHandleResponse(baseAddress+'/user/login','POST',loginInfo)
     setAllTokens(data);
     return data;
 }
 
 const signupUser = async (signupInfo) => {
-    const data = await sendRequestHandleResponse('http://localhost:8081/user/signup','POST',signupInfo)
+    const data = await sendRequestHandleResponse(baseAddress+'/user/signup','POST',signupInfo)
     setAllTokens(data);
     return data;
 }
 
 const createGoal = async (goalData) => {
-    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','POST',goalData);
+    const returnData = await sendRequestHandleResponse(baseAddress+'/goal','POST',goalData);
     return returnData;
 }
 
 const getGoal = async () => {
-    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','GET');
+    const returnData = await sendRequestHandleResponse(baseAddress+'/goal','GET');
     return returnData;
 }
 
 const updateGoal = async (update) => {
-    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','PUT',update);
+    const returnData = await sendRequestHandleResponse(baseAddress+'/goal','PUT',update);
     return returnData;
 }
 
-export {getUserInfo, loginUser, signupUser,createGoal,getGoal,updateGoal};
+const testRequest = async() => {
+    const returnData = await sendRequestHandleResponse(baseAddress+'/','GET');
+    return returnData;
+}
+
+export {getUserInfo, loginUser, signupUser,createGoal,getGoal,updateGoal,testRequest};

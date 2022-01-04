@@ -6,6 +6,7 @@ import Default from '../Default/Default';
 import NavBar from '../../components/NavBar/NavBar';
 import Goals from '../Goals/Goals'
 import {getUserInfo} from '../../utils/apiRequests';
+import { testRequest } from '../../utils/apiRequests';
 
 
 export default class Base extends Component {
@@ -14,6 +15,11 @@ export default class Base extends Component {
 
     componentDidMount() {
         this.attemptLogin();
+    }
+
+    apiTest = async () => {
+        const response = await testRequest();
+        console.log(response);
     }
 
     attemptLogin = async () => {

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import './ProgressBar.scss'
-import CreateGoal from '../CreateGoal/CreateGoal';
 
 const getWidthPercentage = (a,b) => {
     const percentage = ((a/b)*100).toFixed(0);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CreateGoal from '../../components/CreateGoal/CreateGoal'
 import DisplayGoals from '../../components/DisplayGoals/DisplayGoals';
-import { getGoal } from '../../utils/apiRequests';
+import { getGoal,updateGoal } from '../../utils/apiRequests';
 
 export default class Goals extends Component {
 
@@ -24,13 +24,36 @@ export default class Goals extends Component {
         this.getUserGoals();
     }
 
+    updateGoal = (update) => {
+        if (!update || !update._id){ return }
+
+        let searchId = update._id;
+        
+        for (let i=0;i <this.state.goals.length;i++) {
+            if (searchId === this.state.goals[i]._id){
+                //found goal 
+                let updatedArr = this.state.goals
+                updatedArr[i] = update;
+                this.apiUpdateGoal(update);
+                this.setState({goals:updatedArr})
+                break;
+            }
+        }
+
+    }
+
+    apiUpdateGoal = async (update) => {
+        const response = await updateGoal(update);
+        console.log(response);
+    }
+
     render() {
         let {error, errorText,goals} = this.state
         return (
             <div>
-                <DisplayGoals goals={goals}/>
+                <DisplayGoals goals={goals} updateGoal={this.updateGoal}/>
                 {error? errorText:''}
-                <CreateGoal/>
+                <CreateGoal oncreate={this.getUserGoals}/>
             </div>
         )
     }

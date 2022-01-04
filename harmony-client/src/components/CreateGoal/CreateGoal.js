@@ -6,6 +6,7 @@ import {createGoal} from '../../utils/apiRequests';
 
 let globalSetError;
 let globalSetErrorText;
+let globalRefreshGoals;
 
 const extractFormData = () => {
     return {...parseInputs('goal-input'), ...parseCheckbox('goal-checkbox')}
@@ -25,6 +26,7 @@ const handleSubmit = async (evt) => {
     }else {
         globalSetError(true);
         globalSetErrorText('goal created');
+        globalRefreshGoals();
     }
 }
 
@@ -59,17 +61,27 @@ const createForm = (onSubmit) => {
     </form>)
 }
 
-function CreateGoal() {
+function CreateGoal({oncreate}) {
     const [isError,setIsError] = useState(false);
     const [errorText,setErrorText] = useState('');
+    const [menuCollapsed,setMenuCollapsed] = useState(true);
 
     globalSetError = setIsError;
     globalSetErrorText = setErrorText;
+    globalRefreshGoals = oncreate;
+
+    const toggleMenu = (evt) => {
+        evt.preventDefault();
+        setMenuCollapsed(!menuCollapsed);
+    }
 
     return (
         <div className='create-goal'>
-            {isError? errorText : ''}
-            {createForm(handleSubmit)}
+            <button onClick={toggleMenu}> Add </button>
+            <div className={menuCollapsed? 'hidden':''}>
+                {isError? errorText : ''}
+                {createForm(handleSubmit)}
+            </div>
         </div>
     )
 }

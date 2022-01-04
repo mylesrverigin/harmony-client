@@ -27,7 +27,7 @@ const sendRequestHandleResponse = (url,request,data={}) => {
             resolve(res)
         })
         .catch(err=>{
-            resolve(err.response.data)
+            resolve('err',err.response.data)
         })
     });
     
@@ -72,4 +72,9 @@ const getGoal = async () => {
     return returnData;
 }
 
-export {getUserInfo, loginUser, signupUser,createGoal,getGoal};
+const updateGoal = async (update) => {
+    const returnData = await sendRequestHandleResponse('http://localhost:8081/goal','PUT',update);
+    return returnData;
+}
+
+export {getUserInfo, loginUser, signupUser,createGoal,getGoal,updateGoal};

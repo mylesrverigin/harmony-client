@@ -15,6 +15,7 @@ export default class Base extends Component {
 
     componentDidMount() {
         this.attemptLogin();
+        this.apiTest();
     }
 
     apiTest = async () => {
